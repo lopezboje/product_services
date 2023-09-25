@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import inspect
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://products_dllq_user:NoUJV5CLjQZj95ocMj0SzzUBoBVDuSHR@dpg-ck8do508elhc73fvf1og-a:5432/products_dllq'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://products_dllq_user:NoUJV5CLjQZj95ocMj0SzzUBoBVDuSHR@dpg-ck8do508elhc73fvf1og-a/products_dllq'
 db = SQLAlchemy(app)
 
 # Product Model
@@ -53,5 +53,6 @@ if __name__ == '__main__':
     with app.app_context():
         inspector = inspect(db.engine)
         if not inspector.has_table('product'):
+            print("Creating table")
             db.create_all()
     app.run(debug=True)
