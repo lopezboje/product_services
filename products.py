@@ -61,9 +61,4 @@ if __name__ == '__main__':
         if not inspector.has_table('product'):
             print("Creating table")
             db.create_all()
-            new_product = Product(name="Toilet Paper", price=2, quantity=10)
-            db.session.add(new_product)
-            new_product = Product(name="Hand Soap", price=4, quantity=5)
-            db.session.add(new_product)
-            db.session.commit()
     app.run(debug=True)
