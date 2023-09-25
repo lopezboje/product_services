@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import inspect
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://carts_products_service_user:gHUTZN3ntf8giUDIU6V5lEj8SyOU6cUA@dpg-ck8fquo8elhc7388rmhg-a.oregon-postgres.render.com:5432/carts_products_service'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://carts_products_service_user:gHUTZN3ntf8giUDIU6V5lEj8SyOU6cUA@dpg-ck8fquo8elhc7388rmhg-a:5432/carts_products_service'
 db = SQLAlchemy(app)
 
 # Product Model
