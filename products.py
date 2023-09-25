@@ -59,4 +59,5 @@ if __name__ == '__main__':
             db.session.add(new_product)
             new_product = Product(name="Hand Soap", price=4, quantity=5)
             db.session.add(new_product)
+            db.session.commit()
     app.run(debug=True)
