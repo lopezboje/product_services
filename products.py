@@ -1,10 +1,10 @@
 import os
 from flask import Flask, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
-basedir = os.path.abspath(os.path.dirname(__file__))
+from sqlalchemy import inspect
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'tasks.sqlite')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://products_dllq_user:NoUJV5CLjQZj95ocMj0SzzUBoBVDuSHR@dpg-ck8do508elhc73fvf1og-a:5432/products_dllq'
 db = SQLAlchemy(app)
 
 # Product Model
@@ -50,7 +50,8 @@ def create_product():
     return jsonify({"message": "Product created", "product": {"id": new_product.id, "name": new_product.name, "price": new_product.price, "quantity": new_product.quantity}}), 201
 
 if __name__ == '__main__':
-    if not os.path.exists('tasks.sqlite'):
-        with app.app_context():
+    with app.app_context():
+        inspector = inspect(db.engine)
+        if not inspector.has_table('product'):
             db.create_all()
     app.run(debug=True)
