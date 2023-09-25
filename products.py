@@ -49,6 +49,12 @@ def create_product():
 
     return jsonify({"message": "Product created", "product": {"id": new_product.id, "name": new_product.name, "price": new_product.price, "quantity": new_product.quantity}}), 201
 
+# Endpoint 4: Delete Product Table
+@app.route('/products', methods=['DELETE'])
+def delete_products():
+    db.drop_all()
+    return jsonify({"message": "Product table deleted"}), 200
+
 if __name__ == '__main__':
     with app.app_context():
         inspector = inspect(db.engine)
